@@ -8,31 +8,31 @@ class BrowserHistory {
         }
     }
 
-    private Node current;
+    private Node currentNode;
     public BrowserHistory(String homepage) {
-        current=new Node(homepage);
+        currentNode =new Node(homepage);
     }
 
     public void visit(String url) {
         Node newNode = new Node(url);
-        current.next=null;
-        newNode.prev=current;
-        current.next=newNode;
-        current=newNode;
+        currentNode.next=null;
+        newNode.prev= currentNode;
+        currentNode.next=newNode;
+        currentNode =newNode;
     }
 
     public String back(int steps) {
-        while(steps-- > 0 && current.prev!=null){
-            current=current.prev;
+        while(steps-- > 0 && currentNode.prev!=null){
+            currentNode = currentNode.prev;
         }
-        return current.url;
+        return currentNode.url;
     }
 
     public String forward(int steps) {
-        while(steps-- > 0 && current.next!=null){
-            current=current.next;
+        while(steps-- > 0 && currentNode.next!=null){
+            currentNode = currentNode.next;
         }
-        return current.url;
+        return currentNode.url;
     }
 }
 
